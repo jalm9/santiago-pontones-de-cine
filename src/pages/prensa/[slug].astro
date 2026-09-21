@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import { marked } from 'marked';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const notas = await getCollection('prensa');
+  return notas.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const n = entry.data;
+
+const todas = (await getCollection('prensa')).sort(
+  (a, b) => b.data.fecha.getTime() - a.data.fecha.getTime()
+);
+const otras = todas.filter((x) => x.id !== entry.id).slice(0, 3);
+
+const md = (str: string) => marked.parse(str, { async: false }) as string;
+const fechaISO = n.fecha.toISOString().slice(0, 10);
+---
+
+<Base title={`${n.title} — Santiago-Pontones de cine`} description={n.lede}>
+  <article class="art">
+    <div class="wrap art__head">
+      <a class="volver" href="/#prensa">← Volver a Prensa</a>
+      <p class="sub">{n.categoria}</p>
+      <h1>{n.title}</h1>
+      <p class="art__lede">{n.lede}</p>
+      <div class="art__meta">
+        <time datetime={fechaISO}>{n.fecha_humana}</time>
+        <span>·</span>
+        <span class="medio">{n.medio}</span>
+      </div>
+    </div>
+
+    <div class="wrap art__body">
+      <div set:html={md(n.body)}></div>
+
+      {n.figura && (
+        <figure>
+          <Image
+            src={n.figura.src}
+            alt={n.figura.caption}
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 900px) 800px, 90vw"
+          />
+          <figcaption>{n.figura.caption}</figcaption>
+        </figure>
+      )}
+
+      <div class="fuente">
+        <div>Publicado originalmente en <strong>{n.medio}</strong></div>
+      </div>
+    </div>
+  </article>
+
+  <hr class="rule" />
+
+  <section class="wrap otras">
+    <p class="sub">Sigue leyendo</p>
+    <h2>Otras notas de prensa</h2>
+    <div class="prensa">
+      {otras.map((o) => (
+        <a href={`/prensa/${o.id}/`}>
+          <span class="fecha">{o.data.fecha_humana}</span>
+          <span>
+            <span class="titulo">{o.data.title}</span>
+            <span class="medio">{o.data.medio}</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

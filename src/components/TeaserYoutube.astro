@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  youtubeId: string;
+}
+
+const { title, youtubeId } = Astro.props;
+---
+
+<section class="teaser">
+  <div class="teaser__head">
+    <p class="sub">Teaser</p>
+    <p class="titulo">{title} <span>· un anticipo</span></p>
+  </div>
+  <div class="teaser__video">
+    <iframe
+      src={`https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0`}
+      title={`Teaser de ${title}`}
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+  </div>
+</section>

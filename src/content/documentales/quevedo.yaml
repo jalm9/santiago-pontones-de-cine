@@ -1,0 +1,32 @@
+title: Quevedo en Segura
+title_h1: Quevedo <em>en Segura</em>
+estado: Próximo documental
+lede: Un recorrido por la Sierra de Segura de la mano del destierro de Francisco de Quevedo.
+poster: ../../assets/carteles/quevedo.jpeg
+order: 10
+
+meta:
+  - label: Dirección
+    value: José Laso Flores
+  - label: Estado
+    value: En producción
+
+sinopsis:
+  titulo: «Un corcovo del mundo»
+  body: |
+    En 1639 Francisco de Quevedo, ya viejo y enfermo, es desterrado por el Conde-Duque de Olivares. Uno de los lugares donde se refugia es Segura de la Sierra. Desde ahí describirá con una frase certera y sombría los caminos que lo llevaron hasta el corazón del valle del Segura:
+
+    > Partí desde aquí derecho,
+    > antes sospecho que zurdo,
+    > a Segura de la Sierra,
+    > que es un corcovo del mundo.
+
+    El documental sigue esa huella: los pueblos por los que pasó Quevedo, los caminos que anduvo, el paisaje serrano que envuelve el castillo, y la memoria literaria y política que este episodio dejó tras de sí.
+
+ficha:
+  - label: Dirección
+    value: José Laso Flores
+  - label: Producción
+    value: Asociación Cultural La Esparteña
+
+prensa_slugs: []

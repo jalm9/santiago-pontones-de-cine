@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'documentales'>;
+}
+
+const { entry } = Astro.props;
+---
+
+<section class="destacado">
+  <div class="destacado__verso">
+    <div class="destacado__inner">
+      <span class="etiqueta">{entry.data.estado}</span>
+      <blockquote class="quevedo-verso">
+        <p>«Partí desde aquí derecho,</p>
+        <p>antes sospecho que zurdo,</p>
+        <p>a Segura de la Sierra,</p>
+        <p>que es un corcovo del mundo.»</p>
+      </blockquote>
+      <cite>Francisco de Quevedo</cite>
+    </div>
+  </div>
+  <div class="cartel-quevedo">
+    <Image
+      src={entry.data.poster}
+      alt={`Cartel del documental ${entry.data.title}: Quevedo con quevedos sobre el castillo de Segura de la Sierra`}
+      widths={[640, 960, 1280]}
+      sizes="(min-width: 900px) 50vw, 100vw"
+    />
+  </div>
+</section>

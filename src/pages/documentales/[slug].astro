@@ -1,0 +1,190 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import { marked } from 'marked';
+import Base from '../../layouts/Base.astro';
+import TeaserYoutube from '../../components/TeaserYoutube.astro';
+import PrensaLink from '../../components/PrensaLink.astro';
+
+export async function getStaticPaths() {
+  const documentales = await getCollection('documentales');
+  return documentales.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+
+// Traer todas las notas de prensa asociadas
+const todasLasNotas = await getCollection('prensa');
+const prensaAsociada = d.prensa_slugs
+  .map((slug) => todasLasNotas.find((n) => n.id === slug))
+  .filter((n): n is (typeof todasLasNotas)[number] => n !== undefined);
+
+// Otros documentales (para el bloque final)
+const otrosDocs = (await getCollection('documentales'))
+  .filter((doc) => doc.id !== entry.id)
+  .sort((a, b) => a.data.order - b.data.order);
+
+// Helper para renderizar los bodies Markdown embebidos en YAML
+const md = (str: string) => marked.parse(str, { async: false }) as string;
+---
+
+<Base title={`${d.title} — Santiago-Pontones de cine`} description={d.lede}>
+  <section class="doc-hero">
+    <div class="doc-hero__info">
+      <div class="doc-hero__inner">
+        <span class="etiqueta">{d.estado}</span>
+        <h1 set:html={d.title_h1}></h1>
+        <p class="doc-hero__lede">{d.lede}</p>
+        <ul class="doc-hero__meta">
+          {d.meta.map(({ label, value }) => (
+            <li><span>{label}</span>{value}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <div class="doc-hero__poster">
+      <Image
+        src={d.poster}
+        alt={`Cartel del documental ${d.title}`}
+        widths={[640, 960, 1280]}
+        sizes="(min-width: 900px) 50vw, 100vw"
+      />
+    </div>
+  </section>
+
+  <section class="wrap doc-section">
+    <p class="sub">Sinopsis</p>
+    <h2>{d.sinopsis.titulo}</h2>
+    <div class="doc-body" set:html={md(d.sinopsis.body)}></div>
+  </section>
+
+  {d.youtube_id && <TeaserYoutube title={d.title} youtubeId={d.youtube_id} />}
+
+  {d.contexto && (
+    <section class="wrap doc-section">
+      <p class="sub">{d.contexto.sub}</p>
+      <h2>{d.contexto.titulo}</h2>
+      <div class="doc-body" set:html={md(d.contexto.body)}></div>
+    </section>
+  )}
+
+  {d.premio && (
+    <section class="wrap doc-section">
+      <p class="sub">Premios y reconocimientos</p>
+      <h2>{d.premio.titulo}</h2>
+      <p
+        style="color:var(--plata-mute);margin:-1.5rem 0 2rem;font-size:.95rem;letter-spacing:.02em"
+      >
+        {d.premio.medio}
+      </p>
+      <div class="doc-premio">
+        <Image
+          src={d.premio.img}
+          alt={d.premio.img_alt}
+          widths={[220, 440]}
+          sizes="220px"
+        />
+        <div>
+          <p style="font-size:1.05rem;line-height:1.6;color:var(--plata-mute);margin:0 0 1.5rem;max-width:none">
+            {d.premio.cuerpo}
+          </p>
+          <blockquote>
+            «{d.premio.cita}»
+            <cite>{d.premio.cita_autor}</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="wrap doc-section">
+    <p class="sub">Ficha técnica</p>
+    <h2>El equipo detrás</h2>
+    <dl class="doc-ficha-list">
+      {d.ficha.map(({ label, value }) => (
+        <div>
+          <dt>{label}</dt>
+          <dd>{value}</dd>
+        </div>
+      ))}
+    </dl>
+
+    {d.reparto && (
+      <>
+        <p class="sub" style="margin-top:clamp(2rem,4vw,3rem)">{d.reparto.titulo}</p>
+        <ul class="reparto">
+          {d.reparto.actores.map((a) => <li>{a}</li>)}
+        </ul>
+      </>
+    )}
+  </section>
+
+  {d.equipo_visual && (
+    <section class="wrap doc-section" id="equipo">
+      <p class="sub">Quién lo hace</p>
+      <h2>Equipo técnico</h2>
+      <div class="equipo">
+        {d.equipo_visual.map(({ nombre, rol, foto }) => (
+          <div class="persona">
+            <Image
+              src={foto}
+              alt={nombre}
+              widths={[160, 300]}
+              sizes="(min-width: 780px) 180px, 40vw"
+            />
+            <p class="nom">{nombre}</p>
+            <p class="rol">{rol}</p>
+          </div>
+        ))}
+      </div>
+
+      {d.director_bio && (
+        <div class="director">
+          <Image
+            src={d.director_bio.foto}
+            alt={d.director_bio.nombre}
+            widths={[200, 400]}
+            sizes="200px"
+          />
+          <div>
+            <p class="sub">{d.director_bio.titulo}</p>
+            <h3>{d.director_bio.nombre}</h3>
+            <div style="margin-top:1.1rem" set:html={md(d.director_bio.bio)}></div>
+          </div>
+        </div>
+      )}
+    </section>
+  )}
+
+  {prensaAsociada.length > 0 && (
+    <section class="wrap doc-section">
+      <p class="sub">Prensa</p>
+      <h2>Han hablado de esta película</h2>
+      <div class="prensa">
+        {prensaAsociada.map((n) => <PrensaLink entry={n} />)}
+      </div>
+    </section>
+  )}
+
+  <hr class="rule" />
+
+  <section class="wrap otras">
+    <p class="sub">Sigue viendo</p>
+    <h2>Otros documentales</h2>
+    <div class="prensa">
+      {otrosDocs.map((doc) => (
+        <a href={`/documentales/${doc.id}/`}>
+          <span class="fecha">{doc.data.estado}</span>
+          <span>
+            <span class="titulo">{doc.data.title}</span>
+            <span class="medio">Documental de José Laso</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

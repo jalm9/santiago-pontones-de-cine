@@ -1,0 +1,58 @@
+title: El bombardeo de Jaén
+title_h1: El bombardeo <em>de Jaén</em>
+estado: Próximo estreno
+lede: La reconstrucción audiovisual de uno de los episodios más trágicos y silenciados de la Guerra Civil en Andalucía.
+poster: ../../assets/carteles/bombardeo.jpeg
+youtube_id: X4k3bldi4hg
+order: 20
+
+meta:
+  - label: Dirección
+    value: José Laso Flores
+  - label: Producción
+    value: Isabel Pereira Becerra
+  - label: Estreno
+    value: 24 de abril · Teatro Infanta Leonor, Jaén
+  - label: Basado en
+    value: Juan Cuevas Mata
+
+sinopsis:
+  titulo: 1 de abril de 1937, la tarde que arrasó media ciudad
+  body: |
+    Reconstruye uno de los episodios más trágicos y silenciados de la Guerra Civil española: el bombardeo de la ciudad de Jaén ocurrido en la tarde del 1 de abril de 1937. Tras un ataque previo del ejército republicano sobre una fábrica de artillería en el barrio cordobés de Cañero —en el que murieron alrededor de una veintena de civiles—, el general Gonzalo Queipo de Llano ordenó como represalia un ataque aéreo sobre la población civil de Jaén.
+
+    Seis trimotores Junkers 52 de la Legión Cóndor despegaron desde Sevilla, escoltados por aeronaves procedentes de Córdoba, y entraron en Jaén por la zona sur. El resultado fue una ciudad parcialmente arrasada, con 157 personas fallecidas y más de doscientas heridas. La fatídica hora quedó marcada durante meses en el reloj de la iglesia de San Ildefonso.
+
+    El documental recoge testimonios directos y análisis históricos que explican no solo el ataque en sí, sino también sus consecuencias: el bombardeo provocó represalias del bando republicano contra presos derechistas encarcelados en Jaén, ampliando aún más el drama humano.
+
+contexto:
+  sub: Contexto
+  titulo: Un episodio sin relato audiovisual
+  body: |
+    Pese a su magnitud —el bombardeo de Jaén es a veces llamado «el Guernica andaluz»— y pese a existir investigaciones previas como las de Juan Cuevas Mata, el suceso carecía hasta ahora de un formato audiovisual que lo acercara al gran público.
+
+    El proyecto se gestó en la aldea de Los Anchos, en Santiago-Pontones, al amparo de la Asociación Cultural La Esparteña y el Ecomuseo Alma Serrana. Toma como referencia el libro homónimo de Cuevas Mata y comenzó su andadura a mediados de agosto de 2025, de la mano de Isabel Pereira Becerra y con la dirección de José Laso.
+
+    > El objetivo era rescatar un episodio histórico relevante para la ciudad de Jaén que ha permanecido en silencio durante años. Recuperar testimonios reales y visibilizar el profundo trauma que provocó este suceso, con el fin de que las nuevas generaciones comprendan que estos hechos ocurrieron y, sobre todo, contribuir a que no vuelvan a repetirse.
+    >
+    > — José Laso, director
+
+ficha:
+  - label: Dirección
+    value: José Laso Flores
+  - label: Producción ejecutiva
+    value: Isabel Pereira Becerra
+  - label: Referencia bibliográfica
+    value: «El Bombardeo de Jaén, 1 de abril de 1937», de Juan Cuevas Mata
+  - label: Producción
+    value: Asociación Cultural La Esparteña y Ecomuseo Alma Serrana
+  - label: Formación
+    value: Alumnado y profesionales de la Escuela de Arte José Nogué
+  - label: Origen
+    value: Los Anchos · Santiago-Pontones (Jaén)
+
+prensa_slugs:
+  - bombardeo-jaen-hora-jaen
+  - ayuntamiento-jaen-documental
+  - entrevista-isabel-pereira-ser
+  - entrevista-jose-laso-ser

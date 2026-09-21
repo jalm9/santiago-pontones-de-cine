@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'documentales'>;
+  estadoLabel?: string;
+  pie?: string;
+}
+
+const { entry, estadoLabel, pie } = Astro.props;
+const label = estadoLabel ?? entry.data.estado;
+---
+
+<a class="cartel" href={`/documentales/${entry.id}/`}>
+  <div class="marco">
+    <Image
+      src={entry.data.poster}
+      alt={`Cartel del documental ${entry.data.title}`}
+      widths={[320, 480, 640]}
+      sizes="(min-width: 780px) 30vw, 90vw"
+    />
+    <span class="estado">{label}</span>
+  </div>
+  <h3>{entry.data.title}</h3>
+  {pie && <p class="pie">{pie}</p>}
+</a>

@@ -1,0 +1,26 @@
+---
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  title: string;
+  poster: ImageMetadata;
+  videoSrc: string;
+}
+
+const { title, poster, videoSrc } = Astro.props;
+const posterOpt = await getImage({ src: poster, format: 'jpeg', width: 1280 });
+---
+
+<section class="teaser">
+  <div class="teaser__head">
+    <p class="sub">Teaser</p>
+    <p class="titulo">{title} <span>· un anticipo</span></p>
+  </div>
+  <div class="teaser__video">
+    <video controls preload="metadata" poster={posterOpt.src} playsinline>
+      <source src={videoSrc} type="video/mp4" />
+      Tu navegador no puede reproducir este vídeo.
+    </video>
+  </div>
+</section>
