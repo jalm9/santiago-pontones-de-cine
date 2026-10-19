@@ -666,3 +666,100 @@ footer a:hover{border-bottom-color:var(--ambar)}
   display:block;
   border:0;
 }
+
+/* ---------- casting Quevedo ---------- */
+.casting{
+  background:var(--film);
+  border-top:1px solid var(--borde);
+  border-bottom:1px solid var(--borde);
+}
+.casting__grid{
+  display:grid;
+  grid-template-columns:40% 1fr;
+  gap:clamp(2rem,5vw,4.5rem);
+  align-items:start;
+}
+.casting__cartel img{
+  width:100%;
+  height:auto;
+  border:1px solid var(--borde);
+}
+.casting__info{max-width:none}
+.casting .etiqueta{
+  display:inline-block;
+  font-family:'Archivo',sans-serif;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--ambar);
+  border:1px solid var(--ambar);
+  padding:.45rem .9rem;
+  margin-bottom:clamp(1.2rem,2.5vw,1.8rem);
+}
+.casting__info h2{margin-bottom:.9rem}
+.casting__info h2 em{font-style:italic}
+.casting__fecha{
+  font-family:'Bodoni Moda',serif;
+  font-size:clamp(1.05rem,1.4vw,1.25rem);
+  color:var(--ambar);
+  margin:0 0 clamp(1.6rem,3vw,2.2rem);
+  max-width:none;
+}
+.casting__bloques{
+  display:grid;
+  gap:1.6rem;
+  margin:0;
+  border-top:1px solid var(--borde);
+  padding-top:2rem;
+}
+.casting__bloque dt{
+  font-family:'Archivo',sans-serif;
+  font-size:.72rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--plata-mute);
+  font-weight:600;
+  margin-bottom:.5rem;
+}
+.casting__bloque dd{
+  margin:0;
+  color:var(--plata);
+  line-height:1.55;
+  max-width:60ch;
+}
+.casting__contactos-titulo{margin:clamp(2rem,4vw,3rem) 0 1.2rem}
+.casting__contactos{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.6rem 3rem;
+}
+.casting__contacto{
+  display:flex;
+  flex-direction:column;
+  gap:.3rem;
+}
+.casting__contacto .nombre{
+  font-family:'Bodoni Moda',serif;
+  font-size:1.15rem;
+  color:var(--plata);
+  margin:0 0 .3rem;
+  max-width:none;
+}
+.casting__contacto a{
+  color:var(--ambar);
+  text-decoration:none;
+  width:fit-content;
+  border-bottom:1px solid transparent;
+}
+.casting__contacto a:hover{border-bottom-color:var(--ambar)}
+.casting__nota{
+  margin:clamp(2rem,4vw,3rem) 0 0;
+  font-size:.92rem;
+  color:var(--plata-mute);
+  max-width:60ch;
+}
+@media(max-width:900px){
+  .casting__grid{grid-template-columns:1fr}
+  .casting__cartel{max-width:420px}
+}

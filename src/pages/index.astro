@@ -5,6 +5,7 @@ import type { ImageMetadata } from 'astro';
 import Base from '../layouts/Base.astro';
 import QuevedoDestacado from '../components/QuevedoDestacado.astro';
 import TeaserVideo from '../components/TeaserVideo.astro';
+import CastingQuevedo from '../components/CastingQuevedo.astro';
 import CartelHero from '../components/CartelHero.astro';
 import PrensaLink from '../components/PrensaLink.astro';
 
@@ -85,6 +86,8 @@ const piesCartelera: Record<string, string> = {
     poster={quevedo.data.poster}
     videoSrc="/videos/quevedo-teaser.mp4"
   />
+
+  <CastingQuevedo />
 
   <section class="hero wrap" id="documentales">
     <h1>La memoria de la Sierra de Segura, <em>contada en imágenes</em></h1>
