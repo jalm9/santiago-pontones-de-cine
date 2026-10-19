@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import cartelCasting from '../assets/casting.jpg';
+
+// Cambia a true después del sábado 24 de octubre y los textos pasarán
+// automáticamente a tiempo pasado. El cartel y la estructura se mantienen.
+const casting_celebrado = false;
+
+const etiqueta = casting_celebrado ? 'Convocatoria celebrada' : 'Convocatoria abierta';
+const fechaTexto = casting_celebrado
+  ? 'Celebrado el sábado 24 de octubre en la Iglesia de los Jesuitas, Segura de la Sierra'
+  : 'Sábado 24 de octubre · 10:30 h · Iglesia de los Jesuitas, Segura de la Sierra';
+const introFigurantes = casting_celebrado
+  ? 'Vecinos del término municipal de Segura de la Sierra, de entre 7 y 65 años.'
+  : 'Vecinos del término municipal de Segura de la Sierra, de entre 7 y 65 años.';
+const introViviendas = casting_celebrado
+  ? 'Casas en Segura de la Sierra con interiores de carácter medieval (mobiliario, arquitectura, decoración) para ofrecer como zona de rodaje durante uno o dos días.'
+  : 'Casas en Segura de la Sierra con interiores de carácter medieval (mobiliario, arquitectura, decoración) para ofrecer como zona de rodaje durante uno o dos días.';
+const notaPie = casting_celebrado
+  ? 'Convocatoria presencial dirigida a vecinos del término municipal de Segura de la Sierra.'
+  : 'Convocatoria presencial exclusiva para vecinos del término municipal de Segura de la Sierra.';
+---
+
+<section class="casting" id="casting">
+  <div class="wrap casting__grid">
+    <div class="casting__cartel">
+      <Image
+        src={cartelCasting}
+        alt="Cartel del casting de figurantes para el documental Quevedo en Segura"
+        widths={[400, 640, 900]}
+        sizes="(min-width: 900px) 40vw, 90vw"
+      />
+    </div>
+
+    <div class="casting__info">
+      <span class="etiqueta">{etiqueta}</span>
+      <h2>Casting de figurantes para <em>Quevedo en Segura</em></h2>
+      <p class="casting__fecha">{fechaTexto}</p>
+
+      <dl class="casting__bloques">
+        <div class="casting__bloque">
+          <dt>{casting_celebrado ? 'Se buscaron figurantes' : 'Se buscan figurantes'}</dt>
+          <dd>{introFigurantes}</dd>
+        </div>
+        <div class="casting__bloque">
+          <dt>{casting_celebrado ? 'Se buscaron viviendas' : 'Se buscan viviendas'}</dt>
+          <dd>{introViviendas}</dd>
+        </div>
+      </dl>
+
+      <p class="sub casting__contactos-titulo">Contactos</p>
+      <div class="casting__contactos">
+        <div class="casting__contacto">
+          <p class="nombre">Isabel Pereira</p>
+          <a href="tel:+34615592038">615 592 038</a>
+          <a href="mailto:isabelpereirabecerra@gmail.com">isabelpereirabecerra@gmail.com</a>
+        </div>
+        <div class="casting__contacto">
+          <p class="nombre">José Laso</p>
+          <a href="tel:+34608695623">608 695 623</a>
+          <a href="mailto:joselasoflores@gmail.com">joselasoflores@gmail.com</a>
+        </div>
+      </div>
+
+      <p class="casting__nota">{notaPie}</p>
+    </div>
+  </div>
+</section>
